@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+
+// TODO: vervang deze placeholder-cases door je echte klantcases.
+// Tip: vraag klanten om toestemming voor naam + cijfers; anoniem ("installatiebedrijf regio Rotterdam") werkt ook prima.
+const cases = [
+  {
+    sector: 'Installatiebedrijf · regio Rotterdam',
+    title: 'Van onzichtbaar naar 25+ aanvragen per maand',
+    text: 'Nieuwe maatwerkwebsite plus lokale SEO. Binnen drie maanden op positie 1-3 voor de belangrijkste lokale zoektermen.',
+    results: [
+      { n: '+312%', label: 'organisch verkeer' },
+      { n: '25+', label: 'aanvragen p/m' },
+      { n: '0,7s', label: 'laadtijd' },
+    ],
+  },
+  {
+    sector: 'E-commerce · woonaccessoires',
+    title: 'Advertenties eindelijk winstgevend',
+    text: 'Meta-campagnes opnieuw opgebouwd met nieuwe creatives en meting. Kosten per bestelling gehalveerd, omzet verdubbeld binnen twee maanden.',
+    results: [
+      { n: '-52%', label: 'kosten per bestelling' },
+      { n: '2,1x', label: 'omzet' },
+      { n: '4,8', label: 'ROAS' },
+    ],
+  },
+  {
+    sector: 'Zakelijke dienstverlening · Zuid-Holland',
+    title: 'Aanbevolen door ChatGPT als partij in de regio',
+    text: 'GEO-traject: structured data, citeerbare content en autoriteitsopbouw. Het bedrijf wordt nu door AI-assistenten genoemd bij aanbevelingsvragen in hun niche.',
+    results: [
+      { n: 'Top 3', label: 'AI-aanbevelingen niche' },
+      { n: '+89%', label: 'organische leads' },
+      { n: '6 wk', label: 'tot eerste resultaat' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Cases & resultaten | AZLA Solutions"
+  description="Echte resultaten: meer verkeer, meer aanvragen, lagere kosten per lead. Bekijk hoe AZLA ondernemers in de regio Rotterdam laat groeien."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Cases</span>
+      <h1>Resultaten zeggen meer<br />dan <span class="accent">portfolio-plaatjes</span></h1>
+      <p class="lead">Mooie websites maken is de helft van het werk. Dit is wat onze aanpak oplevert in cijfers.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {cases.map((c) => (
+        <article class="case-card reveal">
+          <div class="case-main">
+            <span class="kicker">{c.sector}</span>
+            <h2>{c.title}</h2>
+            <p class="muted">{c.text}</p>
+          </div>
+          <div class="case-results">
+            {c.results.map((r) => (
+              <div class="case-stat">
+                <span class="stat-n">{r.n}</span>
+                <span class="muted">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+      <p class="muted center" style="margin-top:2rem; font-size:.9rem;">
+        Resultaten geanonimiseerd op verzoek van klanten. Cijfers en aanpak lichten we graag toe in een gesprek.
+      </p>
+    </div>
+  </section>
+
+  <CTA title="Benieuwd wat dit voor jouw bedrijf betekent?" />
+</Base>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+  .case-card {
+    display: grid; grid-template-columns: 1.6fr 1fr; gap: 2.5rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1.4rem;
+  }
+  .case-card h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+  .case-results { display: flex; flex-direction: column; gap: 1.2rem; justify-content: center; border-left: 1px solid var(--border); padding-left: 2.5rem; }
+  .case-stat { display: flex; flex-direction: column; }
+  .stat-n { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent); }
+  @media (max-width: 800px) {
+    .case-card { grid-template-columns: 1fr; }
+    .case-results { border-left: none; border-top: 1px solid var(--border); padding: 1.5rem 0 0; flex-direction: row; flex-wrap: wrap; gap: 2rem; }
+  }
+</style>

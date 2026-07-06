@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { SERVICES } from '../../consts';
+---
+
+<Base
+  title="Diensten | Webdesign, SEO & Social Ads — AZLA Solutions"
+  description="Ontdek onze diensten: maatwerk webdesign, SEO & AI-vindbaarheid en social media advertising. Eén partner voor meetbare online groei, regio Rotterdam."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Diensten</span>
+      <h1>Alles voor <span class="accent">online groei</span>,<br />onder één dak</h1>
+      <p class="lead">Website, vindbaarheid en advertenties werken pas echt als ze op elkaar zijn afgestemd. Daarom doen we alle drie — en heb jij één aanspreekpunt. Ook voor grafisch ontwerp, fotografie en video kun je bij ons terecht als onderdeel van je traject.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-3">
+      {SERVICES.map((s) => (
+        <a href={`/diensten/${s.slug}`} class="card service-card reveal">
+          <h3>{s.title}</h3>
+          <p class="muted">{s.short}</p>
+          <span class="card-link">Bekijk dienst <span class="arrow">→</span></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</Base>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+  .service-card { text-decoration: none; display: flex; flex-direction: column; gap: 1rem; }
+  .service-card p { flex: 1; margin: 0; }
+  .card-link { font-family: var(--font-display); font-weight: 600; font-size: .92rem; color: var(--accent); }
+</style>

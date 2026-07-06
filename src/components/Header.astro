@@ -1,0 +1,58 @@
+---
+import { NAV, SITE } from '../consts';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label={SITE.name}>
+      AZLA<span class="accent">.</span>
+    </a>
+    <nav aria-label="Hoofdnavigatie">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="nav-burger" aria-label="Menu openen">
+        <span></span><span></span><span></span>
+      </label>
+      <ul class="nav-list">
+        {NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li><a href="/contact" class="btn btn-primary nav-cta">Gratis strategiegesprek</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 15, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  .logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
+    letter-spacing: -0.03em; text-decoration: none;
+  }
+  .nav-list { display: flex; align-items: center; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+  .nav-list a:not(.btn) {
+    text-decoration: none; font-size: .95rem; font-weight: 500; color: var(--muted);
+    transition: color .15s ease;
+  }
+  .nav-list a:not(.btn):hover { color: var(--accent); }
+  .nav-cta { padding: .6rem 1.3rem; font-size: .9rem; }
+  .nav-toggle, .nav-burger { display: none; }
+
+  @media (max-width: 900px) {
+    .nav-burger {
+      display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: .5rem;
+    }
+    .nav-burger span { width: 24px; height: 2px; background: var(--text); transition: .2s; }
+    .nav-list {
+      display: none; position: absolute; top: 74px; left: 0; right: 0;
+      flex-direction: column; background: var(--bg-elev);
+      padding: 1.5rem; border-bottom: 1px solid var(--border); gap: 1.2rem;
+    }
+    .nav-toggle:checked ~ .nav-list { display: flex; }
+  }
+</style>

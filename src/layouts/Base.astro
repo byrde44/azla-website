@@ -1,0 +1,96 @@
+---
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsApp from '../components/WhatsApp.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: object[]; // extra JSON-LD blokken per pagina
+  ogType?: string;
+}
+const { title, description, schema = [], ogType = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const baseSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITE.domain}/#organization`,
+    name: SITE.name,
+    url: SITE.domain,
+    email: SITE.email,
+    telephone: SITE.phone,
+    description: SITE.description,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: SITE.city,
+      addressRegion: 'Zuid-Holland',
+      addressCountry: 'NL',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Rotterdam' },
+      { '@type': 'City', name: 'Krimpen aan den IJssel' },
+      { '@type': 'City', name: 'Capelle aan den IJssel' },
+      { '@type': 'Country', name: 'Nederland' },
+    ],
+    priceRange: '€€',
+    knowsAbout: ['Webdesign', 'SEO', 'Generative Engine Optimization', 'Social media advertising', 'Conversie-optimalisatie', 'Grafisch ontwerp', 'Fotografie', 'Videografie'],
+    sameAs: ['https://www.instagram.com/azlasolutions/'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE.domain}/#website`,
+    url: SITE.domain,
+    name: SITE.name,
+    inLanguage: 'nl-NL',
+    publisher: { '@id': `${SITE.domain}/#organization` },
+  },
+];
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="AZLA Blog" href="/rss.xml" />
+    <meta name="theme-color" content="#0a0a0f" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${SITE.domain}/og.png`} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {[...baseSchema, ...schema].map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+  </head>
+  <body>
+    <Header />
+    <main><slot /></main>
+    <Footer />
+    <WhatsApp />
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('visible')),
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

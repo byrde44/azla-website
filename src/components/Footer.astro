@@ -1,0 +1,67 @@
+---
+import { SITE, SERVICES } from '../consts';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="logo">AZLA<span class="accent">.</span></a>
+        <p class="muted footer-tag">{SITE.tagline}</p>
+      </div>
+      <div>
+        <h4>Diensten</h4>
+        <ul>
+          {SERVICES.map((s) => (
+            <li><a href={`/diensten/${s.slug}`}>{s.title}</a></li>
+          ))}
+          <li><a href="/webdesign-rotterdam">Webdesign Rotterdam</a></li>
+          <li><a href="/webdesign-krimpen-aan-den-ijssel">Webdesign Krimpen a/d IJssel</a></li>
+          <li><a href="/webdesign-capelle-aan-den-ijssel">Webdesign Capelle a/d IJssel</a></li>
+          <li><a href="/webdesign-ridderkerk">Webdesign Ridderkerk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="/gratis-website-scan" style="color:var(--accent)">Gratis website-scan</a></li>
+          <li><a href="/cases">Cases</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/over-ons">Over ons</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={`tel:${SITE.phone}`}>{SITE.phoneDisplay}</a></li>
+          <li><a href="https://www.instagram.com/azlasolutions/" target="_blank" rel="noopener">Instagram @azlasolutions</a></li>
+          <li class="muted">{SITE.city}, regio Rotterdam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="muted">© {year} {SITE.name}. Alle rechten voorbehouden.</span>
+      <span class="muted">KvK: — &nbsp;·&nbsp; BTW: —</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--border); background: var(--bg-elev); padding: 4rem 0 2rem; margin-top: var(--section-pad); }
+  .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; text-decoration: none; }
+  .footer-tag { margin-top: .8rem; font-size: .95rem; max-width: 240px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 2rem; }
+  h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 1rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { margin-bottom: .6rem; font-size: .95rem; }
+  a { text-decoration: none; color: var(--text); }
+  a:hover { color: var(--accent); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: .85rem;
+  }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+</style>

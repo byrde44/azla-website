@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+import FAQ from '../components/FAQ.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  metaTitle: string;
+  metaDescription: string;
+  serviceName: string;
+  kicker: string;
+  heroTitle: string;
+  heroLead: string;
+  blocks: { title: string; text: string }[];
+  steps: { title: string; text: string }[];
+  faq: { q: string; a: string }[];
+}
+const { metaTitle, metaDescription, serviceName, kicker, heroTitle, heroLead, blocks, steps, faq } = Astro.props;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: serviceName,
+    description: metaDescription,
+    provider: { '@id': `${SITE.domain}/#organization` },
+    areaServed: { '@type': 'Country', name: 'Nederland' },
+    serviceType: serviceName,
+  },
+];
+---
+
+<Base title={metaTitle} description={metaDescription} schema={schema}>
+  <section class="hero">
+    <div class="glow" style="top:-140px; left:30%; width:420px; height:420px; background:var(--accent);"></div>
+    <div class="container">
+      <span class="kicker">{kicker}</span>
+      <h1 set:html={heroTitle} />
+      <p class="lead">{heroLead}</p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn-primary">Plan gratis strategiegesprek <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid-3">
+        {blocks.map((b) => (
+          <div class="card reveal">
+            <h3>{b.title}</h3>
+            <p class="muted" style="margin:0">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Werkwijze</span>
+      <h2>Zo pakken we het aan</h2>
+      <ol class="steps mt-2">
+        {steps.map((s, i) => (
+          <li class="reveal">
+            <span class="step-n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p class="muted" style="margin:0">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <FAQ items={faq} />
+  <CTA />
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 5rem); }
+  .hero-actions { margin-top: 2.2rem; }
+  .steps { list-style: none; margin: 0; padding: 0; max-width: 780px; }
+  .steps li { display: flex; gap: 1.6rem; border-top: 1px solid var(--border); padding: 1.8rem 0; }
+  .step-n { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--accent); min-width: 3rem; }
+  .steps h3 { font-size: 1.15rem; margin-bottom: .4rem; }
+</style>

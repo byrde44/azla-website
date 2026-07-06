@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+// Leadmagnet: laagdrempelige aanvraag met hoge conversie.
+const ACCESS_KEY = 'WEB3FORMS_ACCESS_KEY'; // zelfde key als contactformulier
+---
+
+<Base
+  title="Gratis website-scan | Binnen 48 uur 5 concrete verbeterpunten — AZLA"
+  description="Vraag de gratis website-scan aan: wij analyseren je snelheid, SEO, AI-vindbaarheid en conversie. Binnen 48 uur ontvang je 5 concrete verbeterpunten. Geen verplichtingen."
+>
+  <section class="hero">
+    <div class="glow" style="top:-120px; right:-60px; width:420px; height:420px; background:var(--accent);"></div>
+    <div class="container scan-grid">
+      <div>
+        <span class="kicker">100% gratis · geen verplichtingen</span>
+        <h1>Gratis <span class="accent">website-scan</span></h1>
+        <p class="lead">
+          Wij analyseren je website op de 4 punten die bepalen of je klanten binnenhaalt of verliest.
+          Binnen 48 uur ontvang je een persoonlijke video met 5 concrete verbeterpunten.
+        </p>
+        <ul class="scan-list">
+          <li><strong>Snelheid</strong> — laadt je site snel genoeg voor Google én bezoekers?</li>
+          <li><strong>SEO</strong> — waar sta je nu, en welke zoektermen laat je liggen?</li>
+          <li><strong>AI-vindbaarheid</strong> — word je genoemd door ChatGPT & Perplexity?</li>
+          <li><strong>Conversie</strong> — waarom haken bezoekers af zonder contact op te nemen?</li>
+        </ul>
+        <p class="muted" style="font-size:.9rem">
+          Geen geautomatiseerd rapport uit een tool, maar een echte analyse door een specialist.
+          Daarom beperkt tot 5 scans per week.
+        </p>
+      </div>
+      <div class="card form-card">
+        <h3>Vraag je scan aan</h3>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value={ACCESS_KEY} />
+          <input type="hidden" name="subject" value="Aanvraag gratis website-scan" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <label for="scan-name">Naam *</label>
+          <input id="scan-name" type="text" name="name" required placeholder="Je naam" />
+          <label for="scan-email">E-mail *</label>
+          <input id="scan-email" type="email" name="email" required placeholder="naam@bedrijf.nl" />
+          <label for="scan-url">Je websiteadres *</label>
+          <input id="scan-url" type="url" name="website" required placeholder="https://www.jouwbedrijf.nl" />
+          <button type="submit" class="btn btn-primary" style="border:none">Ontvang mijn scan binnen 48u <span class="arrow">→</span></button>
+        </form>
+        <p class="muted" style="font-size:.82rem; margin-top:1rem">
+          Liever direct? App ons via de groene knop of mail <a href={`mailto:${SITE.email}`} style="color:var(--accent)">{SITE.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 9vw, 7rem) 0; }
+  .scan-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+  .scan-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+  .scan-list li { padding: .7rem 0 .7rem 2rem; position: relative; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .scan-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .scan-list strong { color: var(--text); }
+  .form-card { padding: 2.2rem; position: sticky; top: 110px; }
+  @media (max-width: 900px) { .scan-grid { grid-template-columns: 1fr; gap: 2.5rem; } .form-card { position: static; } }
+</style>

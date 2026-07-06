@@ -1,0 +1,37 @@
+---
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = 'Klaar om meer klanten uit je website te halen?',
+  text = 'Plan een gratis strategiegesprek van 30 minuten. Je krijgt sowieso drie concrete verbeterpunten mee — ook als we niet samenwerken.',
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>{title}</h2>
+      <p class="lead" style="margin: 0 auto 2rem;">{text}</p>
+      <div class="cta-actions">
+        <a href="/contact" class="btn btn-primary">Plan gratis gesprek <span class="arrow">→</span></a>
+        <a href="/cases" class="btn btn-ghost">Bekijk resultaten</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-box {
+    position: relative; overflow: hidden; text-align: center;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: clamp(2.5rem, 6vw, 5rem);
+  }
+  .cta-box::before {
+    content: ''; position: absolute; inset: auto -20% -60% -20%; height: 70%;
+    background: radial-gradient(ellipse at center, rgba(216,255,62,.14), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+</style>

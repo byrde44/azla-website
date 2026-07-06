@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+import FAQ from '../components/FAQ.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  city: string;
+  metaTitle: string;
+  metaDescription: string;
+  intro: string;
+  localText: string;
+  faq: { q: string; a: string }[];
+}
+const { city, metaTitle, metaDescription, intro, localText, faq } = Astro.props;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Webdesign ${city}`,
+    description: metaDescription,
+    provider: { '@id': `${SITE.domain}/#organization` },
+    areaServed: { '@type': 'City', name: city },
+    serviceType: 'Webdesign',
+  },
+];
+---
+
+<Base title={metaTitle} description={metaDescription} schema={schema}>
+  <section class="hero">
+    <div class="glow" style="top:-120px; right:-60px; width:400px; height:400px; background:var(--accent);"></div>
+    <div class="container">
+      <span class="kicker">Webdesign {city}</span>
+      <h1>Website laten maken in <span class="accent">{city}</span></h1>
+      <p class="lead">{intro}</p>
+      <div style="margin-top:2.2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="/contact" class="btn btn-primary">Plan gratis strategiegesprek <span class="arrow">→</span></a>
+        <a href="/cases" class="btn btn-ghost">Bekijk cases</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container local-body">
+      <h2>Waarom ondernemers in {city} voor AZLA kiezen</h2>
+      <p class="muted" set:html={localText} />
+      <div class="grid-3 mt-2">
+        <div class="card reveal">
+          <h3>Sneller dan de rest</h3>
+          <p class="muted" style="margin:0">Websites die in minder dan 1 seconde laden. Google beloont dat — jouw concurrenten in {city} met trage WordPress-sites hebben het nakijken.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Lokaal gevonden</h3>
+          <p class="muted" style="margin:0">Lokale SEO zit standaard ingebakken: van Google Bedrijfsprofiel tot lokale zoektermen. Zo vinden klanten uit {city} en omgeving jou het eerst.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Vindbaar in AI</h3>
+          <p class="muted" style="margin:0">Steeds meer mensen vragen ChatGPT om een aanbeveling. Wij optimaliseren je site zodat AI-assistenten jouw bedrijf noemen — de meeste bureaus doen dit nog niet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faq} title={`Veelgestelde vragen — webdesign ${city}`} />
+  <CTA title={`Klaar voor een website die klanten oplevert in ${city}?`} />
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 5rem); }
+  .local-body h2 { max-width: 720px; }
+  .local-body > p { max-width: 720px; }
+</style>

@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import CTA from '../components/CTA.astro';
+import { SITE } from '../consts';
+---
+
+<Base
+  title="Over AZLA Solutions | Webdesign & marketing, regio Rotterdam"
+  description="AZLA Solutions: premium webdesign- en marketingbureau uit Krimpen aan den IJssel. Geen bureau-fratsen, wel techniek van topniveau en meetbaar resultaat."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Over ons</span>
+      <h1>Klein bureau.<br /><span class="accent">Groot verschil.</span></h1>
+      <p class="lead">
+        AZLA Solutions bestaat omdat de meeste ondernemers vastzitten tussen twee slechte opties:
+        de goedkope websitebouwer die een template oplevert, of het grote bureau waar je een projectnummer bent.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container story">
+      <div class="prose">
+        <h2>Waar wij in geloven</h2>
+        <p class="muted">
+          Een website is geen kostenpost, maar je hardst werkende verkoper — mits goed gebouwd. Daarom combineren
+          wij drie dingen die zelden samenkomen: technisch topniveau (sites die in milliseconden laden), marketingpsychologie
+          (design dat overtuigt) en vindbaarheid van de toekomst (Google én AI-zoekmachines zoals ChatGPT).
+        </p>
+        <p class="muted">
+          We werken vanuit {SITE.city}, in het hart van de regio Rotterdam, voor ondernemers die vooruit willen.
+          Geen wollige rapporten of accountmanagers ertussen: je werkt direct met de specialist die je site bouwt en je campagnes draait.
+        </p>
+        <h2 id="werkwijze">Onze werkwijze</h2>
+        <p class="muted">
+          Elk traject start met een gratis strategiegesprek. Daarin kijken we naar je doelen, je markt en je concurrentie —
+          en krijg je drie concrete verbeterpunten, ook als we niet samenwerken. Daarna werken we in heldere fases met vaste
+          prijzen: strategie, ontwerp, bouw, groei. Je weet altijd waar je aan toe bent en wat het oplevert.
+        </p>
+        <h2>Waarom "AZLA"?</h2>
+        <p class="muted">
+          Van A tot Z, en dan nét even verder. Wij geloven dat het verschil tussen een goede en een uitzonderlijke
+          website in de laatste 10% zit — de details die de meeste bureaus overslaan. Precies daar leven wij voor.
+        </p>
+      </div>
+      <aside class="facts">
+        <div class="card">
+          <h3>Feiten</h3>
+          <ul>
+            <li><strong>Gevestigd:</strong> {SITE.city}</li>
+            <li><strong>Werkgebied:</strong> regio Rotterdam & heel NL</li>
+            <li><strong>Specialisaties:</strong> webdesign, SEO/GEO, social ads</li>
+            <li><strong>Ook:</strong> grafisch ontwerp, fotografie & video</li>
+            <li><strong>Reactietijd:</strong> binnen 24 uur</li>
+            <li><strong>Contracten:</strong> maandelijks opzegbaar</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary" style="margin-top:1rem">Maak kennis <span class="arrow">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CTA title="Eerst gewoon even kennismaken?" text="Een kop koffie of een korte call. Geen verkooppraatje — we kijken samen of en hoe we je kunnen helpen." />
+</Base>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+  .story { display: grid; grid-template-columns: 1.7fr 1fr; gap: 3rem; align-items: start; }
+  .facts { position: sticky; top: 110px; }
+  .facts ul { list-style: none; padding: 0; margin: 0; }
+  .facts li { padding: .55rem 0; border-bottom: 1px solid var(--border); font-size: .95rem; color: var(--muted); }
+  .facts strong { color: var(--text); }
+  @media (max-width: 900px) { .story { grid-template-columns: 1fr; } .facts { position: static; } }
+</style>

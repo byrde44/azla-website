@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE } from '../consts';
+const msg = encodeURIComponent('Hoi! Ik heb interesse in een website / marketing. Kunnen we even sparren?');
+---
+
+<Base
+  title="Contact | Gratis strategiegesprek — AZLA Solutions"
+  description="Plan een gratis strategiegesprek van 30 minuten. Bel, app of mail AZLA Solutions — binnen 24 uur reactie. Regio Rotterdam & heel Nederland."
+>
+  <section class="hero">
+    <div class="container contact-grid">
+      <div>
+        <span class="kicker">Contact</span>
+        <h1>Laten we <span class="accent">sparren</span></h1>
+        <p class="lead">
+          Plan een gratis strategiegesprek van 30 minuten. Je krijgt sowieso drie concrete
+          verbeterpunten voor je online aanwezigheid — ook als we niet samenwerken.
+        </p>
+        <div class="contact-options">
+          <a href={`https://wa.me/${SITE.whatsapp}?text=${msg}`} target="_blank" rel="noopener" class="contact-line">
+            <strong>WhatsApp</strong><span class="muted">Snelste reactie, meestal binnen een uur</span>
+          </a>
+          <a href={`tel:${SITE.phone}`} class="contact-line">
+            <strong>{SITE.phoneDisplay}</strong><span class="muted">Ma t/m vr, 9:00 – 18:00</span>
+          </a>
+          <a href={`mailto:${SITE.email}`} class="contact-line">
+            <strong>{SITE.email}</strong><span class="muted">Reactie binnen 24 uur</span>
+          </a>
+        </div>
+      </div>
+      <div class="card form-card">
+        <h3>Vertel over je project</h3>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: clamp(4.5rem, 9vw, 7rem) 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+  .contact-options { display: flex; flex-direction: column; gap: .9rem; margin-top: 2.2rem; }
+  .contact-line {
+    display: flex; flex-direction: column; text-decoration: none;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 1rem 1.3rem; transition: border-color .18s ease;
+  }
+  .contact-line:hover { border-color: var(--accent); }
+  .contact-line strong { font-family: var(--font-display); }
+  .contact-line span { font-size: .85rem; }
+  .form-card { padding: 2.2rem; }
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+</style>

@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import CTA from '../../components/CTA.astro';
+import { getCollection, render } from 'astro:content';
+import { SITE } from '../../consts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) => d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.domain },
+    publisher: { '@id': `${SITE.domain}/#organization` },
+    mainEntityOfPage: `${SITE.domain}/blog/${post.id}`,
+    inLanguage: 'nl-NL',
+  },
+];
+---
+
+<Base title={`${post.data.title} — AZLA Blog`} description={post.data.description} schema={schema} ogType="article">
+  <article class="section">
+    <div class="container">
+      <div class="prose" style="margin: 0 auto;">
+        <a href="/blog" class="muted back-link">← Alle artikelen</a>
+        <time class="muted" datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+        <h1 style="font-size: clamp(2rem, 4.5vw, 3.2rem); margin-top: .5rem;">{post.data.title}</h1>
+        <Content />
+      </div>
+    </div>
+  </article>
+  <CTA />
+</Base>
+
+<style>
+  .back-link { display: inline-block; text-decoration: none; margin-bottom: 1.5rem; font-size: .9rem; }
+  .back-link:hover { color: var(--accent); }
+  time { font-size: .9rem; display: block; }
+</style>

@@ -1,0 +1,52 @@
+---
+// Formulier via Web3Forms (gratis, geen backend nodig).
+// TODO: maak een gratis access key aan op https://web3forms.com met info@azlasolutions.com
+// en vervang WEB3FORMS_ACCESS_KEY hieronder.
+const ACCESS_KEY = 'WEB3FORMS_ACCESS_KEY';
+---
+
+<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+  <input type="hidden" name="access_key" value={ACCESS_KEY} />
+  <input type="hidden" name="subject" value="Nieuwe aanvraag via azlasolutions.com" />
+  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div class="row">
+    <div>
+      <label for="name">Naam *</label>
+      <input id="name" type="text" name="name" required placeholder="Je naam" />
+    </div>
+    <div>
+      <label for="company">Bedrijf</label>
+      <input id="company" type="text" name="company" placeholder="Bedrijfsnaam" />
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="email">E-mail *</label>
+      <input id="email" type="email" name="email" required placeholder="naam@bedrijf.nl" />
+    </div>
+    <div>
+      <label for="phone">Telefoon</label>
+      <input id="phone" type="tel" name="phone" placeholder="06 12 34 56 78" />
+    </div>
+  </div>
+  <label for="service">Waar kan ik je mee helpen?</label>
+  <select id="service" name="service">
+    <option>Nieuwe website</option>
+    <option>SEO / beter gevonden worden</option>
+    <option>Social media advertenties</option>
+    <option>Alles: website + marketing</option>
+    <option>Iets anders</option>
+  </select>
+  <label for="message">Vertel kort over je project *</label>
+  <textarea id="message" name="message" rows="5" required placeholder="Wat wil je bereiken? Wat is je huidige situatie?"></textarea>
+  <button type="submit" class="btn btn-primary">Verstuur aanvraag <span class="arrow">→</span></button>
+  <p class="muted form-note">Je hoort binnen 24 uur van ons. Liever direct contact? Bel of app ons.</p>
+</form>
+
+<style>
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+  .form-note { font-size: .85rem; margin-top: 1rem; }
+  button { border: none; }
+</style>

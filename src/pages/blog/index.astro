@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const fmt = (d: Date) => d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base
+  title="Blog | Kennis over webdesign, SEO & AI-vindbaarheid — AZLA"
+  description="Praktische kennis over websites, SEO, AI-zoekmachines en online marketing. Geschreven voor ondernemers, zonder jargon."
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Blog</span>
+      <h1>Kennis die je <span class="accent">verder helpt</span></h1>
+      <p class="lead">Praktisch, zonder jargon en direct toepasbaar. Over websites, vindbaarheid en online groei.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="post-list">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="card post-card reveal">
+            <time class="muted" datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+            <h2>{post.data.title}</h2>
+            <p class="muted">{post.data.description}</p>
+            <span class="card-link">Lees artikel <span class="arrow">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+  .post-list { display: flex; flex-direction: column; gap: 1.4rem; max-width: 820px; }
+  .post-card { text-decoration: none; }
+  .post-card h2 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: .5rem 0 .6rem; }
+  .post-card time { font-size: .85rem; }
+  .card-link { font-family: var(--font-display); font-weight: 600; font-size: .92rem; color: var(--accent); }
+</style>
