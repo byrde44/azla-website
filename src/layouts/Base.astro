@@ -12,9 +12,14 @@ interface Props {
   description: string;
   schema?: object[]; // extra JSON-LD blokken per pagina
   ogType?: string;
+  lang?: string;
+  dir?: string;
+  chrome?: boolean;
+  alternates?: { hreflang: string; href: string }[];
 }
-const { title, description, schema = [], ogType = 'website' } = Astro.props;
+const { title, description, schema = [], ogType = 'website', lang = 'nl', dir = 'ltr', chrome = true, alternates = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogLocale = lang === 'fr' ? 'fr_MA' : lang === 'ar' ? 'ar_MA' : 'nl_NL';
 
 const baseSchema = [
   {
@@ -37,6 +42,8 @@ const baseSchema = [
       { '@type': 'City', name: 'Krimpen aan den IJssel' },
       { '@type': 'City', name: 'Capelle aan den IJssel' },
       { '@type': 'Country', name: 'Nederland' },
+      { '@type': 'City', name: 'Tétouan' },
+      { '@type': 'Country', name: 'Maroc' },
     ],
     priceRange: '€€',
     knowsAbout: ['Webdesign', 'SEO', 'Generative Engine Optimization', 'Social media advertising', 'Conversie-optimalisatie', 'Grafisch ontwerp', 'Fotografie', 'Videografie'],
@@ -55,14 +62,17 @@ const baseSchema = [
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-<meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="AZLA Blog" href="/rss.xml" />
@@ -74,7 +84,7 @@ const baseSchema = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={`${SITE.domain}/og.png`} />
-    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:locale" content={ogLocale} />
     <meta name="twitter:card" content="summary_large_image" />
 
     {[...baseSchema, ...schema].map((s) => (
@@ -82,11 +92,11 @@ const baseSchema = [
     ))}
   </head>
   <body>
-    <Header />
+    {chrome && <Header />}
     <main><slot /></main>
-    <Footer />
-    <WhatsApp />
-<script defer src="/_vercel/insights/script.js"></script>
+    {chrome && <Footer />}
+    {chrome && <WhatsApp />}
+    <script defer src="/_vercel/insights/script.js"></script>
     <script>
       const io = new IntersectionObserver(
         (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('visible')),
