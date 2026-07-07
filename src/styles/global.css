@@ -44,7 +44,7 @@ p { margin: 0 0 1.1rem; }
 a { color: inherit; }
 img, svg { max-width: 100%; display: block; }
 
-.container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.5rem, 5.5vw, 2.5rem); }
 .section { padding: var(--section-pad) 0; }
 .section-alt { background: var(--bg-elev); }
 
