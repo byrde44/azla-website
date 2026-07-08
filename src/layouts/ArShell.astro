@@ -1,0 +1,62 @@
+---
+import Base from './Base.astro';
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  alternates?: { hreflang: string; href: string }[];
+  schema?: object[];
+  frUrl?: string;
+}
+const { title, description, alternates = [], schema = [], frUrl = '/fr' } = Astro.props;
+const waMsg = encodeURIComponent('السلام عليكم! أريد عرض سعر لموقع إلكتروني.');
+const wa = `https://wa.me/${SITE.whatsapp}?text=${waMsg}`;
+---
+
+<Base title={title} description={description} lang="ar" dir="rtl" chrome={false} alternates={alternates} schema={schema}>
+  <header class="intl-header">
+    <div class="container intl-header-inner">
+      <a href="/ar" class="logo">AZLA<span class="accent">.</span></a>
+      <nav class="intl-nav">
+        <a href="/ar" class="nav-a">الرئيسية</a>
+        <a href="/ar/services" class="nav-a">خدماتنا</a>
+        <a href="/ar/tasmim-mawaqi-tetouan" class="nav-a">تطوان</a>
+        <a href="/ar/contact" class="nav-a">اتصل بنا</a>
+        <a href={frUrl} class="lang-link">Français</a>
+        <a href="/" class="lang-link">NL</a>
+      </nav>
+    </div>
+  </header>
+
+  <slot />
+
+  <footer class="intl-footer">
+    <div class="container intl-footer-inner">
+      <span class="logo">AZLA<span class="accent">.</span></span>
+      <span class="muted">تطوان · روتردام — {SITE.email} · <a href={wa} style="color:var(--accent)">واتساب</a> · <a href="https://www.instagram.com/azlasolutions/" style="color:var(--text)">إنستغرام</a></span>
+      <span class="muted"><a href="/ar" style="color:var(--text)">الرئيسية</a> · <a href="/ar/services" style="color:var(--text)">خدماتنا</a> · <a href="/ar/tasmim-mawaqi-tetouan" style="color:var(--text)">تطوان</a> · <a href="/ar/contact" style="color:var(--text)">اتصل بنا</a></span>
+      <span class="muted">© 2026 AZLA Solutions · <a href={frUrl} style="color:var(--text)">Français</a> · <a href="/" style="color:var(--text)">Nederlands</a></span>
+    </div>
+  </footer>
+
+  <a class="wa-float" href={wa} target="_blank" rel="noopener" aria-label="واتساب">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2.05 22l5.3-1.38a9.87 9.87 0 0 0 4.69 1.19h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+  </a>
+</Base>
+
+<style>
+  .intl-header { position: sticky; top: 0; z-index: 50; background: rgba(10,10,15,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .intl-header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 1rem; }
+  .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; text-decoration: none; }
+  .intl-nav { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+  .nav-a { color: var(--muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
+  .nav-a:hover { color: var(--accent); }
+  .lang-link { color: var(--muted); text-decoration: none; font-size: .88rem; border: 1px solid var(--border); border-radius: 999px; padding: .2rem .7rem; }
+  .lang-link:hover { color: var(--accent); border-color: var(--accent); }
+  .intl-footer { border-top: 1px solid var(--border); background: var(--bg-elev); padding: 2rem 0; margin-top: 3rem; }
+  .intl-footer-inner { display: flex; flex-direction: column; gap: .5rem; align-items: center; text-align: center; font-size: .9rem; }
+  .intl-footer a { text-decoration: none; }
+  .wa-float { position: fixed; bottom: 22px; left: 22px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 26px rgba(37,211,102,.4); }
+  @media (max-width: 700px) { .intl-nav { gap: .7rem; } .nav-a { font-size: .85rem; } }
+</style>
