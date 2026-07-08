@@ -1,0 +1,64 @@
+---
+import FrShell from '../../layouts/FrShell.astro';
+import { SITE } from '../../consts';
+
+const ACCESS_KEY = 'bac737c4-5025-4369-a94f-70e1f09b457d';
+const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Bonjour ! Je souhaite un devis pour un site web.')}`;
+const alternates = [
+  { hreflang: 'fr', href: `${SITE.domain}/fr/contact` },
+  { hreflang: 'ar', href: `${SITE.domain}/ar/contact` },
+  { hreflang: 'nl', href: `${SITE.domain}/contact` },
+  { hreflang: 'x-default', href: `${SITE.domain}/fr/contact` },
+];
+---
+
+<FrShell
+  title="Contact | Devis gratuit en 24 h — AZLA"
+  description="Contactez AZLA : WhatsApp, e-mail ou formulaire. Réponse en moins de 24 h, en français, arabe ou darija. Devis gratuit et sans engagement."
+  alternates={alternates}
+  arUrl="/ar/contact"
+>
+  <section class="hero">
+    <div class="container contact-grid">
+      <div>
+        <span class="kicker">Contact</span>
+        <h1>Parlons de votre <span class="accent">projet</span></h1>
+        <p class="lead">Réponse en moins de 24 h — en français, en arabe ou en darija. Premier échange gratuit, sans engagement.</p>
+        <div class="contact-options">
+          <a href={wa} target="_blank" rel="noopener" class="contact-line"><strong>WhatsApp</strong><span class="muted">Le plus rapide — réponse souvent dans l'heure</span></a>
+          <a href={`mailto:${SITE.email}`} class="contact-line"><strong>{SITE.email}</strong><span class="muted">Réponse sous 24 h</span></a>
+          <a href="https://www.instagram.com/azlasolutions/" target="_blank" rel="noopener" class="contact-line"><strong>@azlasolutions</strong><span class="muted">Suivez nos réalisations sur Instagram</span></a>
+        </div>
+      </div>
+      <div class="card form-card">
+        <h3>Décrivez votre projet</h3>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value={ACCESS_KEY} />
+          <input type="hidden" name="subject" value="Nouvelle demande (FR) via azlasolutions.com" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <label for="name">Nom *</label>
+          <input id="name" type="text" name="name" required placeholder="Votre nom" />
+          <label for="email">E-mail *</label>
+          <input id="email" type="email" name="email" required placeholder="nom@entreprise.com" />
+          <label for="phone">Téléphone / WhatsApp</label>
+          <input id="phone" type="tel" name="phone" placeholder="+212 ..." />
+          <label for="message">Votre projet *</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Que souhaitez-vous accomplir ?"></textarea>
+          <button type="submit" class="btn btn-primary" style="border:none">Envoyer <span class="arrow">→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+</FrShell>
+
+<style>
+  .hero { padding: clamp(4.5rem, 9vw, 7rem) 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+  .contact-options { display: flex; flex-direction: column; gap: .9rem; margin-top: 2.2rem; }
+  .contact-line { display: flex; flex-direction: column; text-decoration: none; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem 1.3rem; }
+  .contact-line:hover { border-color: var(--accent); }
+  .contact-line strong { font-family: var(--font-display); }
+  .contact-line span { font-size: .85rem; }
+  .form-card { padding: 2.2rem; }
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+</style>
