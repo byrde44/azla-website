@@ -1,0 +1,95 @@
+---
+import ArShell from '../../layouts/ArShell.astro';
+import { SITE } from '../../consts';
+
+const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('السلام عليكم! أريد عرض سعر لموقع إلكتروني.')}`;
+const alternates = [
+  { hreflang: 'fr', href: `${SITE.domain}/fr` },
+  { hreflang: 'ar', href: `${SITE.domain}/ar` },
+  { hreflang: 'nl', href: `${SITE.domain}/` },
+  { hreflang: 'x-default', href: `${SITE.domain}/fr` },
+];
+---
+
+<ArShell
+  title="AZLA — وكالة ويب وتسويق | المغرب · هولندا"
+  description="مواقع إلكترونية فاخرة، ظهور في جوجل وChatGPT، وإعلانات ممولة مربحة. استوديو هولندي بجذور تطوانية في خدمة المغرب وأوروبا."
+  alternates={alternates}
+  frUrl="/fr"
+>
+  <section class="hero">
+    <div class="glow" style="top:-120px; left:-80px; width:480px; height:480px; background:var(--accent);"></div>
+    <div class="container">
+      <span class="kicker">ويب · SEO وذكاء اصطناعي · إعلانات — المغرب وأوروبا</span>
+      <h1>مواقع إلكترونية <span class="accent">تجلب لك الزبائن</span></h1>
+      <p class="lead">
+        AZLA استوديو رقمي هولندي بجذور تطوانية. نصمم مواقع فاخرة تظهر في جوجل
+        ويوصي بها الذكاء الاصطناعي مثل ChatGPT — لشركات في المغرب وأوروبا.
+      </p>
+      <div class="hero-actions">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">عرض سعر مجاني عبر واتساب</a>
+        <a href="/ar/services" class="btn btn-ghost">خدماتنا</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="kicker">خدماتنا</span>
+      <h2>ثلاث خبرات، هدف واحد: نموّ شركتك</h2>
+      <div class="grid-3 mt-2">
+        <a href="/ar/services#web" class="card reveal svc-card">
+          <h3>تصميم المواقع</h3>
+          <p class="muted">مواقع مخصصة، تحميل أقل من ثانية، تصميم أوروبي فاخر. ابتداءً من 15.000 درهم.</p>
+          <span class="card-link">اعرف المزيد ←</span>
+        </a>
+        <a href="/ar/services#seo" class="card reveal svc-card">
+          <h3>SEO والظهور في الذكاء الاصطناعي</h3>
+          <p class="muted">الأوائل في جوجل وموصى بكم من ChatGPT — ميزة لا يملكها منافسوك بعد.</p>
+          <span class="card-link">اعرف المزيد ←</span>
+        </a>
+        <a href="/ar/services#ads" class="card reveal svc-card">
+          <h3>إعلانات ميتا وتيك توك</h3>
+          <p class="muted">حملات مربحة وقابلة للقياس: كل درهم تستثمره تجده في رقم أعمالك.</p>
+          <span class="card-link">اعرف المزيد ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="kicker">لماذا AZLA</span>
+      <h2>أفضل ما في العالمين</h2>
+      <div class="grid-2 mt-2">
+        <div class="card reveal">
+          <h3>معايير أوروبية</h3>
+          <p class="muted" style="margin:0">تقنية وتصميم بمستوى أفضل الوكالات الهولندية: سرعة فائقة، أمان، وأساس تقني مثالي لمحركات البحث.</p>
+        </div>
+        <div class="card reveal">
+          <h3>جذور تطوانية</h3>
+          <p class="muted" style="margin:0">نعرف السوق المغربية، نتحدث لغتك (العربية، الدارجة، الفرنسية) ونفهم زبائنك — محليين وسياحاً.</p>
+        </div>
+      </div>
+      <div class="center mt-2">
+        <a href="/ar/tasmim-mawaqi-tetouan" class="btn btn-ghost">← شركة في تطوان؟ صفحة خاصة</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container center">
+      <h2>لنتحدث عن مشروعك</h2>
+      <p class="lead" style="margin:0 auto 2rem">نرد في أقل من 24 ساعة. أول استشارة مجانية وبدون التزام.</p>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">راسلنا على واتساب</a>
+    </div>
+  </section>
+</ArShell>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 5rem); }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.2rem; }
+  .svc-card { text-decoration: none; display: flex; flex-direction: column; gap: .8rem; }
+  .svc-card p { flex: 1; margin: 0; }
+  .card-link { font-family: var(--font-display); font-weight: 600; font-size: .92rem; color: var(--accent); }
+</style>
