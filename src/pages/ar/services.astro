@@ -1,0 +1,85 @@
+---
+import ArShell from '../../layouts/ArShell.astro';
+import { SITE } from '../../consts';
+
+const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('السلام عليكم! أريد عرض سعر لموقع إلكتروني.')}`;
+const alternates = [
+  { hreflang: 'fr', href: `${SITE.domain}/fr/services` },
+  { hreflang: 'ar', href: `${SITE.domain}/ar/services` },
+  { hreflang: 'x-default', href: `${SITE.domain}/fr/services` },
+];
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'كم تكلفة موقع إلكتروني احترافي في المغرب؟', acceptedAnswer: { '@type': 'Answer', text: 'يبدأ الموقع الاحترافي المخصص لدى AZLA من 15.000 درهم، شاملاً النصوص وSEO واستضافة السنة الأولى. كل مشروع يحصل على سعر ثابت متفق عليه مسبقاً.' } },
+    { '@type': 'Question', name: 'ماذا يشمل تحسين محركات البحث (SEO + GEO)؟', acceptedAnswer: { '@type': 'Answer', text: 'تحسين تقني، كلمات مفتاحية محلية، بيانات منظمة، وظهور في أدوات الذكاء الاصطناعي مثل ChatGPT وGemini — خدمة لا تقدمها تقريباً أي وكالة في المغرب.' } },
+    { '@type': 'Question', name: 'ما الميزانية الإعلانية المناسبة على ميتا؟', acceptedAnswer: { '@type': 'Answer', text: 'لأغلب الشركات، 3.000 إلى 10.000 درهم شهرياً كميزانية إعلانية بداية جيدة. نحسب معاً التكلفة القصوى للعميل المحتمل قبل إطلاق أي حملة.' } },
+  ],
+}];
+---
+
+<ArShell
+  title="خدماتنا: مواقع، SEO وذكاء اصطناعي، إعلانات | AZLA المغرب"
+  description="تصميم مواقع فاخرة، ظهور في جوجل وChatGPT (GEO)، وحملات ميتا/تيك توك مربحة. لشركات في المغرب وأوروبا."
+  alternates={alternates}
+  schema={schema}
+  frUrl="/fr/services"
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">خدماتنا</span>
+      <h1>كل ما تحتاجه <span class="accent">لنموّك الرقمي</span></h1>
+      <p class="lead">الموقع والظهور والإعلانات تعمل معاً. لذلك نتقن الثلاثة — ولديك جهة اتصال واحدة فقط.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="web">
+    <div class="container">
+      <span class="kicker">01 — تصميم المواقع</span>
+      <h2>مواقع فاخرة تحوّل الزوار إلى زبائن</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>سرعة أقل من ثانية</h3><p class="muted" style="margin:0">تحميل شبه فوري حتى بشبكة 3G. جوجل يكافئ ذلك، وزوارك يبقون.</p></div>
+        <div class="card reveal"><h3>تصميم مخصص</h3><p class="muted" style="margin:0">لا قوالب جاهزة: تصميم فريد يبني الثقة ويعكس مستوى جودتك.</p></div>
+        <div class="card reveal"><h3>جاهز لجوجل والذكاء الاصطناعي</h3><p class="muted" style="margin:0">SEO تقني وبيانات منظمة من اليوم الأول — دون تكاليف تطوير لاحقة.</p></div>
+      </div>
+      <p class="mt-2"><strong>ابتداءً من 15.000 درهم</strong> — سعر ثابت، شامل النصوص واستضافة السنة الأولى.</p>
+    </div>
+  </section>
+
+  <section class="section" id="seo">
+    <div class="container">
+      <span class="kicker">02 — SEO والظهور في الذكاء الاصطناعي</span>
+      <h2>كن حيث يبحث عنك زبائنك</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>SEO محلي</h3><p class="muted" style="margin:0">النتائج الأولى في «خدمتك + مدينتك». المنافسة في المغرب ما زالت ضعيفة: المراكز الأولى متاحة الآن.</p></div>
+        <div class="card reveal"><h3>الظهور في ChatGPT</h3><p class="muted" style="margin:0">زبائنك يسألون الذكاء الاصطناعي عن أفضل فندق أو مكتب أو مطعم. نجعل الجواب: أنت.</p></div>
+        <div class="card reveal"><h3>تقارير واضحة</h3><p class="muted" style="margin:0">كل شهر: المراكز، الزوار، الطلبات. ترى بالضبط عائد استثمارك.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="ads">
+    <div class="container">
+      <span class="kicker">03 — إعلانات ميتا وتيك توك</span>
+      <h2>حملات تدفع تكلفتها بنفسها</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>الاستراتيجية أولاً</h3><p class="muted" style="margin:0">قبل صرف أي درهم: كم يساوي الزبون بالنسبة لك، وكم يمكن أن يكلف العميل المحتمل؟ نحسب ثم نطلق.</p></div>
+        <div class="card reveal"><h3>إبداعات توقف التمرير</h3><p class="muted" style="margin:0">الإعلان نفسه يصنع 70٪ من النتيجة. صور وفيديوهات تُختبر باستمرار لنجد ما يحوّل فعلاً.</p></div>
+        <div class="card reveal"><h3>شفافية كاملة</h3><p class="muted" style="margin:0">حساباتك الإعلانية تبقى ملكك. تقرير أسبوعي بسيط: المصروف، النتيجة، الخطوة التالية.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center">
+      <h2>لديك مشروع؟</h2>
+      <p class="lead" style="margin:0 auto 2rem">احكِ لنا في جملتين — وسنخبرك بصدق بما تحتاجه (وما لا تحتاجه).</p>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">عرض سعر مجاني عبر واتساب</a>
+    </div>
+  </section>
+</ArShell>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+</style>
