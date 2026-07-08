@@ -1,0 +1,85 @@
+---
+import FrShell from '../../layouts/FrShell.astro';
+import { SITE } from '../../consts';
+
+const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Bonjour ! Je souhaite un devis pour un site web.')}`;
+const alternates = [
+  { hreflang: 'fr', href: `${SITE.domain}/fr/services` },
+  { hreflang: 'ar', href: `${SITE.domain}/ar/services` },
+  { hreflang: 'x-default', href: `${SITE.domain}/fr/services` },
+];
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Combien coûte un site web professionnel au Maroc ?', acceptedAnswer: { '@type': 'Answer', text: 'Chez AZLA, un site premium sur mesure démarre à 15 000 MAD, textes, SEO et hébergement première année inclus. Chaque projet reçoit un prix fixe convenu à l’avance.' } },
+    { '@type': 'Question', name: 'Que comprend le référencement (SEO + GEO) ?', acceptedAnswer: { '@type': 'Answer', text: 'Optimisation technique, mots-clés locaux, données structurées et visibilité dans les IA comme ChatGPT et Gemini (Generative Engine Optimization) — un service que presque aucune agence au Maroc ne propose.' } },
+    { '@type': 'Question', name: 'Quel budget publicitaire prévoir sur Meta ?', acceptedAnswer: { '@type': 'Answer', text: 'Pour la plupart des entreprises, 3 000 à 10 000 MAD par mois de budget média est un bon départ. Nous calculons ensemble le coût maximal par prospect avant de lancer quoi que ce soit.' } },
+  ],
+}];
+---
+
+<FrShell
+  title="Services : sites web, SEO & IA, publicité | AZLA Maroc"
+  description="Création de sites web premium, référencement Google + visibilité ChatGPT (GEO) et campagnes Meta/TikTok rentables. Pour entreprises au Maroc et en Europe."
+  alternates={alternates}
+  schema={schema}
+  arUrl="/ar/services"
+>
+  <section class="hero">
+    <div class="container">
+      <span class="kicker">Services</span>
+      <h1>Tout pour votre <span class="accent">croissance en ligne</span></h1>
+      <p class="lead">Site, visibilité et publicité fonctionnent ensemble. C'est pourquoi nous maîtrisons les trois — et vous n'avez qu'un seul interlocuteur.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="web">
+    <div class="container">
+      <span class="kicker">01 — Création de sites web</span>
+      <h2>Des sites premium qui convertissent</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>Vitesse &lt; 1 s</h3><p class="muted" style="margin:0">Chargement quasi instantané, même en 3G. Google le récompense, vos visiteurs restent.</p></div>
+        <div class="card reveal"><h3>Design sur mesure</h3><p class="muted" style="margin:0">Pas de template : un design unique qui inspire confiance et reflète votre niveau de qualité.</p></div>
+        <div class="card reveal"><h3>Prêt pour Google & IA</h3><p class="muted" style="margin:0">SEO technique et données structurées intégrés dès le premier jour — aucune mise à niveau coûteuse plus tard.</p></div>
+      </div>
+      <p class="mt-2"><strong>À partir de 15 000 MAD</strong> — prix fixe, textes et hébergement première année inclus.</p>
+    </div>
+  </section>
+
+  <section class="section" id="seo">
+    <div class="container">
+      <span class="kicker">02 — SEO & visibilité IA (GEO)</span>
+      <h2>Être trouvé là où vos clients cherchent</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>SEO local</h3><p class="muted" style="margin:0">Premiers résultats sur « votre service + votre ville ». Au Maroc, la concurrence SEO est encore faible : les places sont à prendre maintenant.</p></div>
+        <div class="card reveal"><h3>Visibilité ChatGPT</h3><p class="muted" style="margin:0">Vos clients demandent à l'IA de recommander un hôtel, un cabinet, un restaurant. Nous faisons en sorte que la réponse soit vous.</p></div>
+        <div class="card reveal"><h3>Rapports clairs</h3><p class="muted" style="margin:0">Chaque mois : positions, visiteurs, demandes. Vous voyez exactement ce que votre investissement rapporte.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="ads">
+    <div class="container">
+      <span class="kicker">03 — Publicité Meta & TikTok</span>
+      <h2>Des campagnes qui se remboursent</h2>
+      <div class="grid-3 mt-2">
+        <div class="card reveal"><h3>Stratégie d'abord</h3><p class="muted" style="margin:0">Avant de dépenser un dirham : que vaut un client pour vous, et combien peut coûter un prospect ? On calcule, puis on lance.</p></div>
+        <div class="card reveal"><h3>Créations qui arrêtent le scroll</h3><p class="muted" style="margin:0">La création fait 70 % du résultat. Visuels et vidéos testés en continu pour trouver ce qui convertit.</p></div>
+        <div class="card reveal"><h3>Transparence totale</h3><p class="muted" style="margin:0">Vos comptes publicitaires restent à vous. Rapport hebdomadaire simple : dépensé, obtenu, prochaine étape.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center">
+      <h2>Un projet en tête ?</h2>
+      <p class="lead" style="margin:0 auto 2rem">Racontez-nous en deux phrases — on vous dit honnêtement ce qu'il vous faut (et ce qu'il ne vous faut pas).</p>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">Devis gratuit sur WhatsApp <span class="arrow">→</span></a>
+    </div>
+  </section>
+</FrShell>
+
+<style>
+  .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(2rem, 4vw, 3rem); }
+</style>
