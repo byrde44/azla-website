@@ -1,0 +1,95 @@
+---
+import FrShell from '../../layouts/FrShell.astro';
+import { SITE } from '../../consts';
+
+const wa = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Bonjour ! Je souhaite un devis pour un site web.')}`;
+const alternates = [
+  { hreflang: 'fr', href: `${SITE.domain}/fr` },
+  { hreflang: 'ar', href: `${SITE.domain}/ar` },
+  { hreflang: 'nl', href: `${SITE.domain}/` },
+  { hreflang: 'x-default', href: `${SITE.domain}/fr` },
+];
+---
+
+<FrShell
+  title="AZLA — Agence web & marketing | Maroc · Pays-Bas"
+  description="Sites web premium, référencement Google + IA (ChatGPT) et publicité sociale. Studio néerlandais aux racines tétouanaises, au service du Maroc et de l'Europe."
+  alternates={alternates}
+  arUrl="/ar"
+>
+  <section class="hero">
+    <div class="glow" style="top:-120px; right:-80px; width:480px; height:480px; background:var(--accent);"></div>
+    <div class="container">
+      <span class="kicker">Web · SEO & IA · Publicité — Maroc & Europe</span>
+      <h1>Des sites web qui <span class="accent">rapportent des clients</span></h1>
+      <p class="lead">
+        AZLA est un studio digital néerlandais aux racines tétouanaises. Nous créons des sites premium,
+        visibles sur Google et recommandés par les IA comme ChatGPT — pour des entreprises au Maroc et en Europe.
+      </p>
+      <div class="hero-actions">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">Devis gratuit sur WhatsApp <span class="arrow">→</span></a>
+        <a href="/fr/services" class="btn btn-ghost">Nos services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <span class="kicker">Nos services</span>
+      <h2>Trois expertises, un objectif : votre croissance</h2>
+      <div class="grid-3 mt-2">
+        <a href="/fr/services#web" class="card reveal svc-card">
+          <h3>Création de sites web</h3>
+          <p class="muted">Sites sur mesure, chargement &lt; 1 seconde, design premium européen. À partir de 15 000 MAD.</p>
+          <span class="card-link">En savoir plus →</span>
+        </a>
+        <a href="/fr/services#seo" class="card reveal svc-card">
+          <h3>SEO & visibilité IA</h3>
+          <p class="muted">Premiers sur Google et recommandés par ChatGPT (GEO) — l'avantage que vos concurrents n'ont pas encore.</p>
+          <span class="card-link">En savoir plus →</span>
+        </a>
+        <a href="/fr/services#ads" class="card reveal svc-card">
+          <h3>Publicité Meta & TikTok</h3>
+          <p class="muted">Des campagnes rentables et mesurables : chaque dirham investi se retrouve dans votre chiffre d'affaires.</p>
+          <span class="card-link">En savoir plus →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Pourquoi AZLA</span>
+      <h2>Le meilleur des deux mondes</h2>
+      <div class="grid-2 mt-2">
+        <div class="card reveal">
+          <h3>Standards européens</h3>
+          <p class="muted" style="margin:0">Technologie et design au niveau des meilleures agences néerlandaises : vitesse extrême, sécurité, référencement technique irréprochable.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Racines tétouanaises</h3>
+          <p class="muted" style="margin:0">Nous connaissons le marché marocain, parlons votre langue (arabe, darija, français) et comprenons vos clients — locaux comme touristes.</p>
+        </div>
+      </div>
+      <div class="center mt-2">
+        <a href="/fr/creation-site-web-tetouan" class="btn btn-ghost">Entreprise à Tétouan ? Page dédiée →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container center">
+      <h2>Parlons de votre projet</h2>
+      <p class="lead" style="margin:0 auto 2rem">Réponse en moins de 24 h. Premier échange gratuit et sans engagement.</p>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">Écrivez-nous sur WhatsApp <span class="arrow">→</span></a>
+    </div>
+  </section>
+</FrShell>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 5rem); }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.2rem; }
+  .svc-card { text-decoration: none; display: flex; flex-direction: column; gap: .8rem; }
+  .svc-card p { flex: 1; margin: 0; }
+  .card-link { font-family: var(--font-display); font-weight: 600; font-size: .92rem; color: var(--accent); }
+</style>
